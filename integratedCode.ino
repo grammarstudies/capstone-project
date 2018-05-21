@@ -135,6 +135,7 @@ void loop()
 		Sweep(180,100); //TURN VIDEO ON
 		while (SearchForGround() > 5)
 		{
+			SearchForGround();
 		}
 		Sweep(180,100); //TURN VIDEO OFF
 		Sweep(180,5000); //TURN CAMERA OFF
