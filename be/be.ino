@@ -12,10 +12,10 @@ probably include a button to (DEACTIVATE ALARM SYSTEM)
 
 /*VARIABLES*/
 Servo motor;
-const int trigPin = 5;
-const int echoPin = 6;
 const int motorPin = 9;
 const int buttonPin = 11;
+const int trigPin = 5;
+const int echoPin = 6;
 int prevPulse = 400;
 int newPulse = 400;
 int average, counter, lastRejected;
@@ -49,11 +49,11 @@ int avgPulse()
 }
 void Sweep(int angle, int wait)
 {
-	Serial.print("WORKS");
+  Serial.print("WORKS");
     for (pos = 0; pos < angle; pos += 5) //sweep to one side
     {
     motor.write(pos);
-		delay(5);
+    delay(5);
     }
 
     delay(wait); //hold down for 3 seconds
@@ -61,12 +61,12 @@ void Sweep(int angle, int wait)
     for (pos = angle; pos > 0; pos -= 5) //sweep back
     {
       motor.write(pos);
-			delay(5);
+      delay(5);
     }
 }
 int SearchForGround()
 {
-	average = avgPulse();
+  average = avgPulse();
   if (((average - prevPulse) < 100) && ((average - prevPulse) > -100)) //ACCEPTANCE
   {
     newPulse = average;
@@ -107,36 +107,36 @@ int SearchForGround()
     Serial.print("REJECTED: "); Serial.print(lastRejected); Serial.print(", ACCEPTED: "); Serial.println(newPulse);
     Serial.print("AVERAGE: "); Serial.print(average); Serial.print(", CREDENCE: "); Serial.println(credence);
   prevPulse = newPulse;
-	return newPulse;
+  return newPulse;
 }
 
 
 /*RUNTIME FUNCTIONS*/
 void setup() 
 {
-	pinMode(buttonPin,INPUT_PULLUP); //has the arduino listen for data from the button
-	pinMode(trigPin, OUTPUT);
-	pinMode(echoPin, INPUT);
-	Serial.begin(9600); //initializes serial monitor; effectively serves as the console; transmitting data at 9600 bits/sec
-	motor.attach(motorPin);
-	for (pos = 90; pos > 0; pos -= 10) //resets motor to default position
-	{
-		motor.write(pos);
-		delay(5);
-	}
+  pinMode(buttonPin,INPUT_PULLUP); //has the arduino listen for data from the button
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600); //initializes serial monitor; effectively serves as the console; transmitting data at 9600 bits/sec
+  motor.attach(motorPin);
+  for (pos = 90; pos > 0; pos -= 10) //resets motor to default position
+  {
+    motor.write(pos);
+    delay(5);
+  }
 
 }
 
 void loop() 
 {
-	if (digitalRead(buttonPin) == LOW) //INITIATE SEQUENCE
-	{
-		Sweep(180, 3000); //TURN CAMERA ON
-		Sweep(180,100); //TURN VIDEO ON
-		while (SearchForGround() > 5)
-		{
-		}
-		Sweep(180,100); //TURN VIDEO OFF
-		Sweep(180,5000); //TURN CAMERA OFF
-	}
+  if (digitalRead(buttonPin) == LOW) //INITIATE SEQUENCE
+  {
+    Sweep(180, 3000); //TURN CAMERA ON
+    Sweep(180,100); //TURN VIDEO ON
+    while (SearchForGround() > 5)
+    {
+    }
+    Sweep(180,100); //TURN VIDEO OFF
+    Sweep(180,5000); //TURN CAMERA OFF
+  }
 }

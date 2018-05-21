@@ -12,52 +12,106 @@ probably include a button to (DEACTIVATE ALARM SYSTEM)
 
 /*VARIABLES*/
 Servo motor;
-int pos = 0;
-int motorPin = 9;
-int buttonPin = 11;
-int trigPin = 12;
-int echoPin = 13;
+const int motorPin = 9;
+const int buttonPin = 11;
+const int trigPin = 5;
+const int echoPin = 6;
+int prevPulse = 400;
+int newPulse = 400;
+int average, counter, lastRejected;
+int credence = 0;
+int pos = 0; //in degrees
 long duration; //in microseconds
 long distance; //in centimeters
 
 /*FUNCTIONS*/
-void Sweep()
+int pulse()
+{
+  delay(100);
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  distance= duration*0.034/2;
+  return distance;
+}
+int avgPulse()
+{
+  int firstPulse = pulse();
+  int secondPulse = pulse();
+  int thirdPulse = pulse();
+  int result = (firstPulse + secondPulse + thirdPulse) / 3;
+  return result;
+}
+void Sweep(int angle, int wait)
 {
 	Serial.print("WORKS");
-    for (pos = 0; pos < 180; pos += 5) //sweep to one side
+    for (pos = 0; pos < angle; pos += 5) //sweep to one side
     {
     motor.write(pos);
 		delay(5);
     }
 
-    delay(3000); //hold down for 3 seconds
+    delay(wait); //hold down for 3 seconds
 
-    for (pos = 180; pos > 0; pos -= 5) //sweep back
+    for (pos = angle; pos > 0; pos -= 5) //sweep back
     {
       motor.write(pos);
 			delay(5);
     }
 }
-void SearchForGround()
+int SearchForGround()
 {
-	// Clears the trigPin
-	digitalWrite(trigPin, LOW);
-	delayMicroseconds(2);
-// Sets the trigPin on HIGH state for 10 micro seconds
-	digitalWrite(trigPin, HIGH);
-	delayMicroseconds(10);
-	digitalWrite(trigPin, LOW);
-// Reads the echoPin, returns the sound wave travel time in microseconds
-	duration = pulseIn(echoPin, HIGH);
-// Calculating the distance
-	distance= duration*0.034/2;
-// Prints the distance on the Serial Monitor
-	Serial.print("Distance: ");
-	Serial.println(distance);
+	average = avgPulse();
+  if (((average - prevPulse) < 100) && ((average - prevPulse) > -100)) //ACCEPTANCE
+  {
+    newPulse = average;
+    Serial.println("SUCCESS");
+  }
+  else //REJECTION
+  {
+    Serial.print("FAILURE ");
+    if (credence == 0)
+    {
+      lastRejected = average;
+      credence++;
+      Serial.println("1");
+    }
+    else if (credence == 3)
+    {
+      newPulse = average;
+      lastRejected = -1000;
+      credence = 0;
+      Serial.println("2");
+    }
+    else //IF CREDENCE IS BETWEEN 0 AND 4
+    {
+      if (((average - lastRejected) < 100) && ((average - lastRejected) > -100))
+      {
+        lastRejected = average;
+        credence++;
+        Serial.println("3");
+      }
+      else
+      {
+        lastRejected = -1000;//cannot be null so an impossible number is in its place
+        credence = 0;
+        Serial.println("4");
+      }
+    }
+  }
+    Serial.print("REJECTED: "); Serial.print(lastRejected); Serial.print(", ACCEPTED: "); Serial.println(newPulse);
+    Serial.print("AVERAGE: "); Serial.print(average); Serial.print(", CREDENCE: "); Serial.println(credence);
+  prevPulse = newPulse;
+	return newPulse;
 }
 
 
-
+/*RUNTIME FUNCTIONS*/
 void setup() 
 {
 	pinMode(buttonPin,INPUT_PULLUP); //has the arduino listen for data from the button
@@ -75,9 +129,14 @@ void setup()
 
 void loop() 
 {
-	SearchForGround();
-	if (digitalRead(buttonPin) == LOW)
-{
-	Sweep();
-}
+	if (digitalRead(buttonPin) == LOW) //INITIATE SEQUENCE
+	{
+		Sweep(180, 3000); //TURN CAMERA ON
+		Sweep(180,100); //TURN VIDEO ON
+		while (SearchForGround() > 5)
+		{
+		}
+		Sweep(180,100); //TURN VIDEO OFF
+		Sweep(180,5000); //TURN CAMERA OFF
+	}
 }

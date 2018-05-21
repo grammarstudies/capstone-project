@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module fritzingVersion="0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806" icon="Mine.png">
+    <title>My Parts</title>
+    <instances>
+        <instance moduleIdRef="arduino_Uno_Rev3(fix)" modelIndex="5805" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/arduino_Uno_Rev3(fix).fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="ResistorModuleID" modelIndex="5806" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/resistor.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="SmallElectrolyticCapacitorModuleID" modelIndex="5998" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/capacitor_electrolytic_small.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="603ColorLEDModuleID" modelIndex="6308" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/SMD_LED_generic_0603.fzp" flippedSMD="true">
+            <property name="flippedSMD" value="true"/>
+            <views/>
+        </instance>
+        <instance moduleIdRef="WireModuleID" modelIndex="6456" path=":/resources/parts/core/wire.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="3234DBDC80leg" modelIndex="6830" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/servo.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="20A9BBEE34_ST" modelIndex="7085" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/pushbutton_4_horizontal.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="8abf6496b5d466c7a1893c17a296a676" modelIndex="8164" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/piezo sensor.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="MiniBreadboardModuleID" modelIndex="8237" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/miniBreadboard.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="Electromechanical-BATTERY-AA-KIT" modelIndex="8846" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/electromechanical-battery-aa-kit.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="77c36646df552e9fe72f360837f556ccleg" modelIndex="8847" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/Battery block 9V.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="20A9BBEE34_ST-2leadbutton-horizon" modelIndex="9204" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/pushbutton_2_horizontal.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="ad901601e6d29266846fc9e4568504b6" modelIndex="9988" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/Barometric Pressure Sensor.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="SparkFun-Sensors-MPL3115A2-LGA8" modelIndex="9992" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/sparkfun-sensors-mpl3115a2-lga8.fzp" flippedSMD="true">
+            <property name="flippedSMD" value="true"/>
+            <views/>
+        </instance>
+        <instance moduleIdRef="hc-sr04_ultrafix" modelIndex="10239" path="C:/Users/Jose M Gallegos/Downloads/fritzing.0.9.3b.32.pc/fritzing.0.9.3b.32.pc/fritzing-parts/core/hc-sr04_ultrafix.fzp">
+            <views/>
+        </instance>
+    </instances>
+</module>
