@@ -1,3 +1,4 @@
+//Basic sensor capabilities derived from https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/
 const int trigPin = 5;
 const int echoPin = 6;
 long duration;
