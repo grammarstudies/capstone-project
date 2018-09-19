@@ -5,7 +5,7 @@ once altimeter reads correct height with enough certainty, either (INDICATE READ
 so that controller can activate with bluetooth or (AUTOMATICALLY INITIATE DESCENT (depends upon how the descent is being done))
 once descent is initiated, (USE SWEEP FUNCTION) to press down on camera
 once descent is completed, (REPEAT SWEEP FUNCTION OR SOMETHING) to turn camera off, then
-(FLASH LED) and (ACTIVATE SPEAKERS) n stuff
+(FLASH LED) and (ACTIVATE SPEAKERS)
 probably include a button to (DEACTIVATE ALARM SYSTEM)
 */
 #include <Servo.h> //servo library to access functions
